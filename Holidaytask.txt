@@ -1,0 +1,203 @@
+************************
+Holiday task 
+************************
+
+Leetcode 151
+
+class Solution {
+    public String reverseWords(String s) {
+        String[] words =s.split(" +");
+        StringBuilder sb = new StringBuilder();
+        for(int i=words.length-1;i>=0;i--)
+        {
+            sb.append(words[i]);
+            if(i!=0)
+            {
+            sb.append(" ");
+            }
+        }
+        return sb.toString().trim();
+
+    }
+}
+
+Leetcode 680
+
+class Solution {
+    boolean isPalindrome(String s,int left,int right)
+    {
+        while(left<right)
+        {
+            if(s.charAt(left)!=s.charAt(right)) return false;
+            left++;
+            right--;
+        }
+        return true;
+    }
+    public boolean validPalindrome(String s) {
+        int left=0;
+        int right=s.length()-1;
+        while(left<right)
+        {
+            if(s.charAt(left)==s.charAt(right))
+            {
+                left++;
+                right--;
+            }
+            else{
+            return isPalindrome(s,left+1,right)||isPalindrome(s,left,right-1);
+            }
+        }
+        return true;
+    }
+}
+
+Leetcode 88
+
+class Solution {
+    public void merge(int[] nums1, int m, int[] nums2, int n) {
+        int p1=m-1;
+        int p2=n-1;
+        int i=m+n-1;
+        while(p2>=0)
+        {
+            if (p1>=0 && nums1[p1]>nums2[p2])
+            {
+               nums1[i--]=nums1[p1--];
+            }
+            else
+            {
+                nums1[i--]=nums2[p2--];
+            }
+
+        }
+    }
+}
+
+Leetcode 11
+
+class Solution {
+    public int maxArea(int[] height) {
+        int left = 0;
+        int right = height.length - 1;
+        int maxArea = 0;
+
+        while (left < right) {
+            int currentArea = Math.min(height[left], height[right]) * (right - left);
+            maxArea = Math.max(maxArea, currentArea);
+
+            if (height[left] < height[right]) {
+                left++;
+            } else {
+                right--;
+            }
+        }
+
+        return maxArea;
+    }
+}
+
+Leetcode 42
+
+public class Solution {
+    public int trap(int[] h) {
+        int l = 0, r = h.length - 1, lmax = Integer.MIN_VALUE, rmax = Integer.MIN_VALUE, ans = 0;
+        while (l < r) {
+        lmax = Math.max(lmax, h[l]);
+        rmax = Math.max(rmax, h[r]);
+        ans += (lmax < rmax) ? lmax - h[l++] : rmax - h[r--];
+        }
+        return ans;
+    }
+}
+
+Leetcode 75
+
+class Solution {
+    public void sortColors(int[] nums) {
+        int countzero=0,countone=0,counttwo=0;
+        for(int num:nums)
+        {
+            if(num==0)
+            {
+                countzero++;
+            }
+            else if(num==1) countone++;
+            else counttwo++;
+        }
+        int pos=0;
+        while(countzero!=0)
+        {
+            nums[pos]=0;
+            pos++;
+            countzero--;
+        }
+        while(countone!=0)
+        {
+            nums[pos]=1;
+            pos++;
+            countone--;
+        }
+        while(counttwo!=0)
+        {
+            nums[pos]=2;
+            pos++;
+            counttwo--;
+        }
+    }
+}
+Leetcode 2226
+
+class Solution {
+    public int maximumCandies(int[] candies, long k) {
+        int left = 1, right = 10_000_000;
+        int result = 0;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            long childrenCount = 0;
+
+            for (int candy : candies) {
+                childrenCount += candy / mid;
+            }
+
+            if (childrenCount >= k) {
+                result = mid;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return result;
+    }
+} 
+
+
+Leetcode 1781
+
+class Solution {
+    public int maximumCandies(int[] candies, long k) {
+        int left = 1, right = 10_000_000;
+        int result = 0;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            long childrenCount = 0;
+
+            for (int candy : candies) {
+                childrenCount += candy / mid;
+            }
+
+            if (childrenCount >= k) {
+                result = mid;
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+
+        return result;
+    }
+}
+
