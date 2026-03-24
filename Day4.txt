@@ -1,0 +1,102 @@
+Leetcode 390
+class Solution {
+    public int lastRemaining(int n) {
+        int start=1;
+        int step=1;
+        int rem=n;
+        boolean LtoR=true;
+        while(rem>1)
+        {
+            if(rem%2!=0 ||LtoR)
+            {
+                start=start+step;
+            }
+            rem=rem/2;
+            step=step*2;
+            LtoR=!LtoR;
+        }
+        return start;
+    }
+}
+
+
+Leetcode 2582
+
+class Solution {
+    public int passThePillow(int n, int time) {
+        int count=1;
+        boolean f=false;
+        for(int i=1;i<=time;i++)
+        {
+          if(count==1)
+          {
+            f=true;
+          }
+           if(count==n)
+           {
+           f=false;
+           }
+           if(f)
+           {
+            count++;
+           }
+           else
+           {
+            count--;
+           }
+
+        }
+        return count;
+    }
+}
+
+Leetcode 1041
+
+class Solution {
+    public boolean isRobotBounded(String instructions) {
+        char[] arr=instructions.toCharArray();
+        int x=0,y=0,dir=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]=='G')
+            {
+                if(dir==0) y++;
+                else if(dir==1) x++;
+                else if(dir==2) y--;
+                else x--;
+            }
+            else if(arr[i]=='L')
+            {
+                dir=(dir+3)%4;
+            }
+            else
+            {
+                dir=(dir+1)%4;
+            }
+        }
+        if(dir==0 &&(x!=0 ||y!=0)) return false;
+        return true;
+    }
+}
+
+Leetcode 319
+
+class Solution {
+    public int bulbSwitch(int n) {
+        return (int) Math.sqrt(n);
+    }
+}
+
+Leetcode 441
+
+class Solution {
+    public int arrangeCoins(int n) {
+        int rows=1;
+        while(n>0)
+        {
+            rows++;
+            n-=rows;
+        }
+        return rows-1;
+    }
+}
