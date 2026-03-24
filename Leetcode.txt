@@ -1,0 +1,207 @@
+Leetcode 33
+class Solution {
+    public int search(int[] nums, int target) {
+        int left = 0, right = nums.length - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (nums[mid] == target) return mid;
+            if (nums[left] <= nums[mid]) {
+                if (target >= nums[left] && target < nums[mid]) {
+                    right = mid - 1;
+                } else {
+                    left = mid + 1;
+                }
+            }
+            else {
+                if (target > nums[mid] && target <= nums[right]) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+        }
+        return -1;
+    }
+}
+    
+
+
+
+Leetcode 53
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int cursum=0;
+        int max=nums[0];
+        for(int i:nums)
+        {
+            cursum+=i;
+            if(cursum>max)
+            {
+                max=cursum;
+            }
+            if(cursum<0)
+            {
+                cursum=0;
+            }
+        }
+        return max;
+    }
+}
+Leetcode 557
+
+class Solution {
+    public String reverseWords(String s) {
+        StringBuilder sb = new StringBuilder();
+        String[] str= s.split(" ");
+        for(String s1:str)
+        {
+            StringBuilder s2=new StringBuilder(s1);
+            s2=s2.reverse();
+            sb.append(s2);
+            sb.append(" ");
+        }
+    return sb.toString().trim();
+    }
+}
+
+Leetcode 344
+
+class Solution {
+    public void reverseString(char[] s) {
+        int start=0;
+        int end=s.length-1;
+        while(start<end)
+        {
+            char ch=s[start];
+            s[start]=s[end];
+            s[end]=ch;
+            start++;
+            end--;
+        }
+        
+    }
+}
+
+Leetcode 125
+
+class Solution {
+    public boolean isPalindrome(String s) {
+        StringBuilder  sb= new StringBuilder();
+        s=s.toLowerCase();
+        for(char c:s.toCharArray())
+        {
+            if(c>='a'&& c<='z'||c>='0'&& c<='9')
+            {
+                sb.append(c);
+            }
+        }
+        String org=sb.toString();
+        String rev=sb.reverse().toString();
+        if(org.equals(rev)) return true;
+        return false;
+    }
+}
+
+Leetcode 1217
+
+class Solution {
+    public int minCostToMoveChips(int[] position) {
+        int evencount=0,oddcount=0;
+        for(int i:position)
+        {
+            if(i%2==0)
+            {
+                evencount++;
+            }
+            else
+            {
+                oddcount++;
+            }
+        }
+        return Math.min(evencount,oddcount);
+    }
+}
+
+Leetcode 2525
+
+class Solution {
+    public String categorizeBox(int length, int width, int height, int mass) {
+        long volume=1L*length*width*height;
+        boolean volumeres=false;
+        boolean massres=false;
+        if(volume>=Math.pow(10,9)||(length>=Math.pow(10,4)|| height>=Math.pow(10,4) ||width>=Math.pow(10,4)))
+        {
+            volumeres=true;
+        }
+       if(mass>=100)  massres=true;
+       if(volumeres && massres)
+       {
+        return "Both";
+       }
+       else if(!volumeres && !massres)
+       {
+        return "Neither";
+       }
+       else if(volumeres && !massres)
+       {
+        return "Bulky";
+       }
+       return "Heavy";
+
+    }
+}
+
+Leetcode 2864
+
+class Solution {
+    public String maximumOddBinaryNumber(String s) {
+        int count=0;
+        for(char c:s.toCharArray())
+        {
+            if(c=='1')
+            {
+                count++;
+            }
+        }
+        StringBuilder sb = new StringBuilder();
+        for(int i=0;i<s.length()-1;i++)
+        {
+            if(count>1)
+            {
+                sb.append('1');
+                count--;
+            }
+            else
+            {
+                sb.append('0');
+            }
+        }
+        sb.append('1');
+        return sb.toString();
+    }
+}
+
+Leetcode 283
+class Solution {
+    public void moveZeroes(int[] nums) {
+        if(nums==null||nums.length==0) return ;
+        int insertpos=0;
+        int count=0;
+        for(int num:nums)
+        {
+            if(num!=0) nums[insertpos++]=num;
+            else count++;
+        }
+      
+        while(count!=0)
+        {
+            nums[insertpos++]=0;
+            count--;
+        }
+    }
+}
+
+
