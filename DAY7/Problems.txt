@@ -1,0 +1,31 @@
+Leetcode 58
+class Solution {
+    public int lengthOfLastWord(String s) {
+        String[] words=s.split(" ");
+        String lastword=words[words.length-1];
+        int length=lastword.length();
+        return length;
+    }
+}
+Leetcode 724
+class Solution {
+    public int pivotIndex(int[] nums) {
+        int l=0,r=nums.length;
+        int lsum=0,rsum=0;
+        int total=0;
+        for(int num:nums)
+        { total+=num;
+        }
+       for(int i=l;i<r;i++)
+       {
+        rsum=total-lsum-nums[i];
+        if(rsum==lsum){
+             return i;
+        }
+        lsum+=nums[i];
+       }
+       return -1;
+
+       
+    }
+}
