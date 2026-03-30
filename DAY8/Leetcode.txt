@@ -1,0 +1,179 @@
+Leetcode 54:
+
+class Solution {
+    public List<Integer> spiralOrder(int[][] matrix) {
+        List<Integer> list = new ArrayList<Integer>();
+        int top = 0, bot = matrix.length - 1;
+        int left = 0, right = matrix[0].length - 1;
+        while (top <= bot && left <= right) {
+            for (int i = left; i <= right; i++) {
+                list.add(matrix[top][i]);
+            }
+            top++;
+            for (int i = top; i <= bot; i++) {
+                list.add(matrix[i][right]);
+            }
+            right--;
+            if (top <= bot) {
+                for (int i = right; i >= left; i--) {
+                    list.add(matrix[bot][i]);
+                }
+                bot--;
+            }
+            if (left <= right) {
+                for (int i = bot; i >= top; i--) {
+                    list.add(matrix[i][left]);
+                }
+                left++;
+            }
+        }
+        return list;
+    }
+}
+Leetcode3163:
+
+class Solution {
+    public String compressedString(String word) {
+        StringBuilder sb=new StringBuilder();
+        char ch= word.charAt(0);
+        int count=1;
+        for(int i=1;i<word.length();i++)
+        {
+            if(word.charAt(i)==ch && count<9 )
+            {
+                count++;
+            }
+            else
+            {
+               sb.append(count);
+               sb.append(ch);
+               ch=word.charAt(i);
+               count=1;
+            }
+        }
+        sb.append(count);
+        sb.append(ch);
+        return sb.toString();
+    }
+}
+HomeWork:
+
+Leetcode 13:
+class Solution {
+    public int romanToInt(String s) {
+        int res = 0;
+        Map<Character, Integer> roman = new HashMap<>();
+        roman.put('I', 1);
+        roman.put('V', 5);
+        roman.put('X', 10);
+        roman.put('L', 50);
+        roman.put('C', 100);
+        roman.put('D', 500);
+        roman.put('M', 1000);
+
+        for (int i = 0; i < s.length() - 1; i++) {
+            if (roman.get(s.charAt(i)) < roman.get(s.charAt(i + 1))) {
+                res -= roman.get(s.charAt(i));
+            } else {
+                res += roman.get(s.charAt(i));
+            }
+        }
+
+        return res + roman.get(s.charAt(s.length() - 1));        
+    }
+}
+
+Leetcode 15:
+
+class Solution {
+    
+    public List<List<Integer>> threeSum(int[] nums) {
+        Arrays.sort(nums);
+        List<List<Integer>> res = new ArrayList<>();
+       int n = nums.length;
+       for(int i = 0;i < n - 2;i++){
+        int j = i+1,k = n - 1;
+        
+        if(i > 0 && nums[i] == nums[i-1]) continue;
+        
+        while(j < k){
+            int sum = nums[i] + nums[j] + nums[k];
+            if(sum == 0){
+            res.add(Arrays.asList(nums[i],nums[j],nums[k]));
+            j++;
+            k--;
+            while(j < k && nums[j] == nums[j-1]) j++;
+            }else if(sum < 0) j++;
+            else k--;
+
+        }
+       }
+
+       return res;
+
+
+
+    }
+}
+
+Leetcode 18
+
+class Solution {
+    public List<List<Integer>> fourSum(int[] nums, int target) {
+        List<List<Integer>> l = new ArrayList<>();
+        HashSet<List<Integer>> set = new HashSet<>(); 
+        Arrays.sort(nums);
+
+        for(int i = 0; i < nums.length - 3; i++){
+            for(int j = i + 1; j < nums.length - 2; j++){
+                int s = j + 1, e = nums.length - 1;
+
+                while(s < e){
+                    long sum = (long)nums[i] + nums[j] + nums[s] + nums[e];
+
+                    if(sum == target){
+                        List<Integer> list = Arrays.asList(nums[i], nums[j], nums[s], nums[e]);
+                        Collections.sort(list);
+                        if(!set.contains(list)){
+                           l.add(list);
+                           set.add(list);
+                        }
+                        
+                        s++;
+                        e--;
+                    }
+                    else if(sum > target){
+                        e--;
+                    }
+                    else{
+                        s++;
+                    }
+                }
+            }
+        }
+        return l;
+    }
+}
+
+Leetcode 38
+
+class Solution {
+    public String countAndSay(int n) {
+        String res = "1";
+        for (int i = 1; i < n; i++) {
+            StringBuilder temp = new StringBuilder();
+            int count = 1;
+            for (int j = 1; j < res.length(); j++) {
+                if (res.charAt(j) == res.charAt(j - 1)) {
+                    count++;
+                } else {
+                    temp.append(count).append(res.charAt(j - 1));
+                    count = 1;
+                }
+            }
+            temp.append(count).append(res.charAt(res.length() - 1));
+            res = temp.toString();
+        }
+        return res;
+    }
+}
