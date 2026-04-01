@@ -1,0 +1,24 @@
+Leetcode 134
+
+class Solution {
+    public int canCompleteCircuit(int[] gas, int[] cost) {
+        int totGas=0,totCost=0;
+        int tot=0,start=0;
+        for(int i=0;i<gas.length;i++)
+        {
+            totGas+=gas[i];
+            totCost+=cost[i];
+            tot+=gas[i]-cost[i];
+            if(tot<0)
+            {
+                start=i+1;
+                tot=0;
+            }
+        }
+        if(totGas>=totCost)
+        {
+            return start;
+        }
+     return -1;
+   }
+}
