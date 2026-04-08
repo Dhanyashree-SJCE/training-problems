@@ -1,4 +1,4 @@
-import java.util.*;
+//import java.util.*;
  public class Method2 {
     static void change(int x)
     {

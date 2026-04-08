@@ -6,6 +6,7 @@ public class WordswithEvenlen {
         Scanner sc= new Scanner(System.in);
         String s= sc.nextLine();
         System.out.println(withEven(s));
+        sc.close();
     }
     static String withEven(String s)
     {
@@ -33,6 +34,7 @@ public class WordswithEvenlen {
 
       }
       return sb.toString();
+      
     }
 }
 

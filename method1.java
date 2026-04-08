@@ -16,5 +16,6 @@ public class method1
         Scanner sc= new Scanner(System.in);
         int s=sc.nextInt();
         print(s);
+        sc.close();
     }    
 }

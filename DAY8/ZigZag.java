@@ -6,6 +6,7 @@ public class ZigZag {
         String s= sc.next();
         int rows=sc.nextInt();
         System.out.println(zigzagpattern(s,rows));
+        sc.close();
 
     }
     static String zigzagpattern(String  s,int row)

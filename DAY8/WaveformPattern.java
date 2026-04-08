@@ -20,5 +20,6 @@ public class WaveformPattern {
             }
         }
         System.out.println(odd.toString()+even.toString());
+        sc.close();
     }
 }
